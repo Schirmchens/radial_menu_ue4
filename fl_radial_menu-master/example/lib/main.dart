@@ -3,16 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 void main() => runApp(MyApp());
+RadialMenu menu;
 
-Widget _withRoundedRectangleBorder() {
-  return RaisedButton(
-    child: Text("RaisedButton with RoundedRectangleBorder"),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
-    ),
-    onPressed: () {},
-  );
-}
 
 class MyApp extends StatelessWidget {
   @override
@@ -25,6 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
+
+
   final items = [
     RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.red,
         () => print('red')),
@@ -36,13 +30,20 @@ class HomeScreen extends StatelessWidget {
         () => print('yellow')),
     RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.purple,
         () => print('purple')),
+    RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.blue,
+            () => print('blue')),
+    RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.yellow,
+            () => print('yellow')),
+    RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.purple,
+            () => print('purple')),
+
   ];
 
   @override
   Widget build(BuildContext context) {
+    menu = RadialMenu(items);
     return Scaffold(
-      body: SafeArea(
-        child: Center(
+      body: Center(
           child:
          /* RadialMenu(items, fanout: Fanout.bottomRight),
           Divider(),
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
           Divider(),
           RadialMenu(items, fanout: Fanout.right),
           Divider(),*/
-          RadialMenu(items)
+          menu
           /*RadialMenu(items, fanout: Fanout.left),
           Divider(),
           RadialMenu(items, fanout: Fanout.topRight),
@@ -61,7 +62,6 @@ class HomeScreen extends StatelessWidget {
           Divider(),
           RadialMenu(items, fanout: Fanout.topLeft),*/
         ),
-      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class RadialMenu extends StatefulWidget {
   final _itemButtonPadding = 8.0;
 
   Size get containersize {
-    double overshootBuffer = 10;
+    double overshootBuffer = 100;
     double w = (childDistance + itemButtonRadius) * 2 + overshootBuffer;
     double h = w;
     return Size(w, h);
@@ -65,11 +66,11 @@ class RadialMenu extends StatefulWidget {
 
   RadialMenu(this.items,
       {this.childDistance = 90.0,
-      this.itemButtonRadius = 16.0,
-      this.mainButtonRadius = 24.0,
-      this.dialOpenDuration = 300,
-      this.isClockwise = true,
-      this.curve = Curves.easeInOutBack,
+        this.itemButtonRadius = 16.0,
+        this.mainButtonRadius = 24.0,
+        this.dialOpenDuration = 300,
+        this.isClockwise = true,
+        this.curve = Curves.easeInOutBack,
       });
 
   @override
@@ -78,6 +79,9 @@ class RadialMenu extends StatefulWidget {
 
 class _RadialMenuState extends State<RadialMenu> {
   bool opened = false;
+  bool secondaryOut = false;
+
+  List<Widget> list = List<Widget>();
 
   final GlobalKey _key = GlobalKey();
   Size _size = Size(0.0, 0.0);
@@ -85,7 +89,7 @@ class _RadialMenuState extends State<RadialMenu> {
   getSizeAndPosition() {
     RenderBox _renderBox = _key.currentContext.findRenderObject();
     setState(() {
-      _size = _renderBox.size;      
+      _size = _renderBox.size;
     });
   }
 
@@ -97,11 +101,14 @@ class _RadialMenuState extends State<RadialMenu> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> list = List<Widget>();
-    list.addAll(_buildChildren());
-    list.add(_buildMainButton());
 
-    return Container(
+    if(!secondaryOut){
+      list = [];
+      list.addAll(_buildChildren());
+      list.add(_buildMainButton());
+    }
+    print("list build: "); print(list.length);
+    Widget out = Container(
       key: _key,
       width: widget.containersize.width,
       height: widget.containersize.height,
@@ -112,6 +119,8 @@ class _RadialMenuState extends State<RadialMenu> {
         children: list,
       ),
     );
+    secondaryOut=false;
+    return out;
   }
 
   Widget _buildMainButton() {
@@ -122,39 +131,39 @@ class _RadialMenuState extends State<RadialMenu> {
       },
       child: opened
           ? InkWell(
-              child: Padding(
-                  padding: EdgeInsets.all(widget._mainButtonPadding),
-                  child: Container(
-                      height: widget.mainButtonRadius * 2,
-                      width: widget.mainButtonRadius * 2,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(widget.mainButtonRadius),
-                          color: Colors.red),
-                      child: Center(
-                          child: Icon(Icons.close, color: Colors.white)))),
-              onTap: () {
-                setState(() {
-                  opened = false;
-                });
-              })
+          child: Padding(
+              padding: EdgeInsets.all(widget._mainButtonPadding),
+              child: Container(
+                  height: widget.mainButtonRadius * 2,
+                  width: widget.mainButtonRadius * 2,
+                  decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.circular(widget.mainButtonRadius),
+                      color: Colors.red),
+                  child: Center(
+                      child: Icon(Icons.close, color: Colors.white)))),
+          onTap: () {
+            setState(() {
+              opened = false;
+            });
+          })
           : InkWell(
-              child: Padding(
-                  padding: EdgeInsets.all(widget._mainButtonPadding),
-                  child: Container(
-                      height: widget.mainButtonRadius * 2,
-                      width: widget.mainButtonRadius * 2,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(widget.mainButtonRadius),
-                          color: Colors.grey),
-                      child: Center(
-                          child: Icon(Icons.color_lens, color: Colors.white)))),
-              onTap: () {
-                setState(() {
-                  opened = true;
-                });
-              }),
+          child: Padding(
+              padding: EdgeInsets.all(widget._mainButtonPadding),
+              child: Container(
+                  height: widget.mainButtonRadius * 2,
+                  width: widget.mainButtonRadius * 2,
+                  decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.circular(widget.mainButtonRadius),
+                      color: Colors.grey),
+                  child: Center(
+                      child: Icon(Icons.color_lens, color: Colors.white)))),
+          onTap: () {
+            setState(() {
+              opened = true;
+            });
+          }),
     );
   }
 
@@ -195,6 +204,54 @@ class _RadialMenuState extends State<RadialMenu> {
                   child: Center(child: item.child))),
           onTap: () {
             item.onSelected();
+
+            setState(() {
+              list.addAll(_buildSecondaryChildren());
+              print("list in second: "); print(list.length);
+              secondaryOut = true;
+              //opened = false;
+            });
+          },
+        ));
+  }
+
+  List<Widget> _buildSecondaryChildren() {
+    return widget.items.asMap().entries.map((e) {
+      int index = e.key;
+      RadialMenuItem item = e.value;
+
+      return AnimatedPositioned(
+          duration: Duration(milliseconds: widget.dialOpenDuration),
+          curve: widget.curve,
+          left: opened
+              ? position.dx + (widget.animationRelativePosX(index) * 1.5)
+              : position.dx,
+          top: opened
+              ? position.dy + (widget.animationRelativePosY(index) * 1.5)
+              : position.dy,
+          child: _buildSecondaryChild(item));
+    }).toList();
+  }
+
+  Widget _buildSecondaryChild(RadialMenuItem item) {
+    return AnimatedSwitcher(
+        duration: Duration(milliseconds: widget.dialOpenDuration),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return RotationTransition(child: child, turns: animation);
+        },
+        child: InkWell(
+          key: UniqueKey(),
+          child: Padding(
+              padding: EdgeInsets.all(widget._itemButtonPadding),
+              child: Container(
+                  height: widget.itemButtonRadius * 2,
+                  width: widget.itemButtonRadius * 2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(widget.itemButtonRadius*2),
+                      color: item.color),
+                  child: Center(child: item.child))),
+          onTap: () {
+            item.onSelected();
             setState(() {
               opened = false;
             });
@@ -202,11 +259,13 @@ class _RadialMenuState extends State<RadialMenu> {
         ));
   }
 
+
   Offset get position {
     return axisOrigin + widget.posDelta;
   }
 
   Offset get axisOrigin {
+    //getSizeAndPosition();
     print(_size);
     final x = _size.width / 2 -
         (widget.mainButtonRadius + widget._mainButtonPadding);
@@ -220,3 +279,6 @@ class _RadialMenuState extends State<RadialMenu> {
 double _degreeToRadian(double degree) {
   return degree * pi / 180;
 }
+
+
+
