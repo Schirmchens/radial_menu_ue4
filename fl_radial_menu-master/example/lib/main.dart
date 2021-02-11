@@ -16,52 +16,80 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() => _HomeScreenState();
+}
 
 
-  final items = [
+
+class _HomeScreenState extends State<HomeScreen>{
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  List<Widget> _widgetOptions = <Widget>[
+    RadialMenu(items),
+    Text('Index 2: School'),
+    Text('Index 2: School'),
+    Text('Index 2: School'),
+  ];
+
+  static final List<RadialMenuItem> items = [
     RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.red,
-        () => print('red')),
+            () => print('red')),
     RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.green,
-        () => print('green')),
-    RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.blue,
-        () => print('blue')),
-    RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.yellow,
-        () => print('yellow')),
-    RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.purple,
-        () => print('purple')),
+            () => print('green')),
     RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.blue,
             () => print('blue')),
     RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.yellow,
             () => print('yellow')),
     RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.purple,
             () => print('purple')),
+    RadialMenuItem(Icon(Icons.blur_on, color: Colors.white), Colors.grey,
+            () => print('grey')),
+    RadialMenuItem(Icon(Icons.color_lens, color: Colors.white), Colors.black,
+            () => print('grey')),
 
   ];
 
   @override
   Widget build(BuildContext context) {
-    menu = RadialMenu(items);
     return Scaffold(
       body: Center(
-          child:
-         /* RadialMenu(items, fanout: Fanout.bottomRight),
-          Divider(),
-          RadialMenu(items, fanout: Fanout.bottom),
-          Divider(),
-          RadialMenu(items, fanout: Fanout.bottomLeft),
-          Divider(),
-          RadialMenu(items, fanout: Fanout.right),
-          Divider(),*/
-          menu
-          /*RadialMenu(items, fanout: Fanout.left),
-          Divider(),
-          RadialMenu(items, fanout: Fanout.topRight),
-          Divider(),
-          RadialMenu(items, fanout: Fanout.top),
-          Divider(),
-          RadialMenu(items, fanout: Fanout.topLeft),*/
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'RGB',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'CMYKA',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'HSLA',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'HSVA',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black87,
+        unselectedItemColor: Colors.black26,
+        onTap: _onItemTapped,
+      ),
     );
+
   }
 }
+

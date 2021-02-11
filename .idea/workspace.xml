@@ -3,14 +3,41 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a392af1-9a0e-41f1-af37-082ea65d1fc0" name="Default Changelist" comment="" />
+    <list default="true" id="6a392af1-9a0e-41f1-af37-082ea65d1fc0" name="Default Changelist" comment="Added Secondary menu">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_radial_menu-master/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/fl_radial_menu-master/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_radial_menu-master/lib/src/radial_menu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/fl_radial_menu-master/lib/src/radial_menu.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl_radial_menu-master/lib/src/radial_menu_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/fl_radial_menu-master/lib/src/radial_menu_item.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1o9FXF9zZgAZHq1HF05tbypol48" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,7 +72,39 @@
       <option name="presentableId" value="Default" />
       <updated>1612690936133</updated>
     </task>
+    <task id="LOCAL-00001" summary="Set Up">
+      <created>1612696464069</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612696464070</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added Secondary menu">
+      <created>1612710336609</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612710336609</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Set Up" />
+    <MESSAGE value="Added Secondary menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Secondary menu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612691679433">
@@ -56,33 +115,58 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="202" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1612691632374" />
-    <state x="93" y="93" width="1350" height="638" key="AVDManager" timestamp="1612691282979">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="-1804" y="-127" width="1688" height="806" key="AVDManager" timestamp="1613049226162">
+      <screen x="-1920" y="-244" width="1920" height="1040" />
     </state>
+    <state x="-1804" y="-127" width="1688" height="806" key="AVDManager/0.0.1536.824/-1920.-244.1920.1040@-1920.-244.1920.1040" timestamp="1613049226162" />
     <state x="93" y="93" width="1350" height="638" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1612691282979" />
-    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1612691079983">
+    <state x="586" y="159" key="AndroidProcessChooserDialog" timestamp="1612699308732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1612691079983" />
-    <state width="1491" height="141" key="GridCell.Tab.0.bottom" timestamp="1612692785655">
+    <state x="586" y="159" key="AndroidProcessChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1612699308732" />
+    <state width="573" height="466" key="DebuggerActiveHint" timestamp="1612709528100">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612692785655" />
-    <state width="1491" height="141" key="GridCell.Tab.0.center" timestamp="1612692785655">
+    <state width="573" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1612709528100" />
+    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1612696407184">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1612692785655" />
-    <state width="1491" height="141" key="GridCell.Tab.0.left" timestamp="1612692785654">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1612696407184" />
+    <state width="1877" height="156" key="GridCell.Tab.0.bottom" timestamp="1613051137537">
+      <screen x="-1920" y="-244" width="1920" height="1040" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1612692785654" />
-    <state width="1491" height="141" key="GridCell.Tab.0.right" timestamp="1612692785655">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="156" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.-244.1920.1040@-1920.-244.1920.1040" timestamp="1613051137537" />
+    <state width="1491" height="260" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612712292913" />
+    <state width="1877" height="156" key="GridCell.Tab.0.center" timestamp="1613051137537">
+      <screen x="-1920" y="-244" width="1920" height="1040" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1612692785655" />
+    <state width="1877" height="156" key="GridCell.Tab.0.center/0.0.1536.824/-1920.-244.1920.1040@-1920.-244.1920.1040" timestamp="1613051137537" />
+    <state width="1491" height="260" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1612712292913" />
+    <state width="1877" height="156" key="GridCell.Tab.0.left" timestamp="1613051137537">
+      <screen x="-1920" y="-244" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="156" key="GridCell.Tab.0.left/0.0.1536.824/-1920.-244.1920.1040@-1920.-244.1920.1040" timestamp="1613051137537" />
+    <state width="1491" height="260" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1612712292913" />
+    <state width="1877" height="156" key="GridCell.Tab.0.right" timestamp="1613051137537">
+      <screen x="-1920" y="-244" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="156" key="GridCell.Tab.0.right/0.0.1536.824/-1920.-244.1920.1040@-1920.-244.1920.1040" timestamp="1613051137537" />
+    <state width="1491" height="260" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1612712292913" />
     <state x="277" y="57" key="SettingsEditor" timestamp="1612691282568">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1612691282568" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1612696504090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1612696504090" />
+    <state x="-1253" y="-125" width="585" height="801" key="find.popup" timestamp="1613042808642">
+      <screen x="-1920" y="-244" width="1920" height="1040" />
+    </state>
+    <state x="-1253" y="-125" width="585" height="801" key="find.popup/0.0.1536.824/-1920.-244.1920.1040@-1920.-244.1920.1040" timestamp="1613042808642" />
+    <state x="-1297" y="-19" width="672" height="678" key="search.everywhere.popup" timestamp="1613050798312">
+      <screen x="-1920" y="-244" width="1920" height="1040" />
+    </state>
+    <state x="-1297" y="-19" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/-1920.-244.1920.1040@-1920.-244.1920.1040" timestamp="1613050798312" />
   </component>
 </project>
