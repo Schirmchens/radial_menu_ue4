@@ -133,16 +133,23 @@ class _RadialMenuState extends State<RadialMenu> {
         backgroundColor: Colors.white70,
       ),
       backgroundColor: background_color,
-      body: Center(
-          child: Container(
-        key: _key,
-        width: widget.containersize.width,
-        height: widget.containersize.height,
-        child: Stack(
-          alignment: widget.stackAlignment,
-          children: list,
+      body: Column(
+        children:[
+          Padding(padding: EdgeInsets.all(32.0),
+              child: Center(
+                  child: Text( "RGB color: "+ background_color.red.toString()+", " + background_color.green.toString() + ", " + background_color.blue.toString(),
+                  style: TextStyle(fontSize: 15)))),
+
+          Center(
+            child: Container(
+          key: _key,
+          width: widget.containersize.width,
+          height: widget.containersize.height,
+          child: Stack(
+            alignment: widget.stackAlignment,
+            children: list,
         ),
-      )),
+      )),])
     );
     secondaryOut = false;
     return out;
@@ -250,7 +257,6 @@ class _RadialMenuState extends State<RadialMenu> {
   }
 
   List<Widget> _buildSecondaryChildren(String baseColor) {
-    widget.secondaryItems = [];
     this.buildSecondaryItems(baseColor);
     return widget.secondaryItems.asMap().entries.map((e) {
       int index = e.key;
