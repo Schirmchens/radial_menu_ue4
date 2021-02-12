@@ -100,6 +100,7 @@ class _RadialMenuState extends State<RadialMenu> {
   bool opened = false;
   bool secondaryOut = false;
   Color background_color = Colors.white;
+  double _currentBrihgtness = 1;
   List<Widget> list = List<Widget>();
 
   final GlobalKey _key = GlobalKey();
@@ -128,30 +129,27 @@ class _RadialMenuState extends State<RadialMenu> {
     print("list build: ");
     print(list.length);
     Widget out = Scaffold(
-      appBar: AppBar(
-        title: const Text("RGB-Color Modus"),
-        backgroundColor: Colors.white70,
-      ),
-      backgroundColor: background_color,
-      body: Column(
-        children:[
-          Padding(padding: EdgeInsets.all(32.0),
-              child: Center(
-                  child: Text( "RGB color: "+ background_color.red.toString()+", " + background_color.green.toString() + ", " + background_color.blue.toString(),
-                  style: TextStyle(fontSize: 15)))),
-
-          Center(
-            child: Container(
-          key: _key,
-          width: widget.containersize.width,
-          height: widget.containersize.height,
-          child: Stack(
-            alignment: widget.stackAlignment,
-            children: list,
+        appBar: AppBar(
+          title: const Text("RGB-Color Modus"),
+          backgroundColor: Colors.white70,
         ),
-      )),])
-    );
-    secondaryOut = false;
+        backgroundColor: background_color,
+        body: Column(children: [
+          Center(
+              child: Container(
+            key: _key,
+            width: widget.containersize.width,
+            height: widget.containersize.height,
+            child: Stack(
+              alignment: widget.stackAlignment,
+              children: list,
+            ),
+          )),
+          _buildSlider(),
+          _buildShowColorValues(),
+
+        ]));
+
     return out;
   }
 
@@ -177,6 +175,7 @@ class _RadialMenuState extends State<RadialMenu> {
               onTap: () {
                 setState(() {
                   opened = false;
+                  secondaryOut = false;
                 });
               })
           : InkWell(
@@ -240,23 +239,22 @@ class _RadialMenuState extends State<RadialMenu> {
 
             setState(() {
               print(item.baseColor);
-              if(item.baseColor=="RANDOM"){
+              if (item.baseColor == "RANDOM") {
                 background_color = randomColor();
               }
-              else{
-                background_color = item.color;
-              }
+
               list.addAll(_buildSecondaryChildren(item.baseColor));
               print("list in second: ");
               print(list.length);
               secondaryOut = true;
-              opened = false;
+              // opened = false;
             });
           },
         ));
   }
 
   List<Widget> _buildSecondaryChildren(String baseColor) {
+    secondaryOut = false;
     this.buildSecondaryItems(baseColor);
     return widget.secondaryItems.asMap().entries.map((e) {
       int index = e.key;
@@ -297,8 +295,8 @@ class _RadialMenuState extends State<RadialMenu> {
             item.onSelected();
             setState(() {
               print(item.baseColor);
-                background_color = item.color;
-                opened = false;
+              background_color = item.color;
+              //opened = false;
             });
           },
         ));
@@ -337,7 +335,8 @@ class _RadialMenuState extends State<RadialMenu> {
         buildPurpleMenu();
         break;
       case ("GREY"):
-        buildGreyMenu();;
+        buildGreyMenu();
+        ;
         break;
       default:
         break;
@@ -401,7 +400,7 @@ class _RadialMenuState extends State<RadialMenu> {
   void buildBlueMenu() {
     widget.secondaryItems = [
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(0,21,128, 1), () => print('green')),
+          Color.fromRGBO(0, 21, 128, 1), () => print('green')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
           Color.fromRGBO(0, 60, 179, 1), () => print('red')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
@@ -428,13 +427,13 @@ class _RadialMenuState extends State<RadialMenu> {
   void buildYellowMenu() {
     widget.secondaryItems = [
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(179,179,0, 1), () => print('green')),
+          Color.fromRGBO(179, 179, 0, 1), () => print('green')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(230,230,0, 1), () => print('red')),
+          Color.fromRGBO(230, 230, 0, 1), () => print('red')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
           Color.fromRGBO(225, 225, 0, 1), () => print('purple')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(255,217,25, 1), () => print('grey')),
+          Color.fromRGBO(255, 217, 25, 1), () => print('grey')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
           Color.fromRGBO(225, 213, 0, 1), () => print('yellow')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
@@ -455,13 +454,13 @@ class _RadialMenuState extends State<RadialMenu> {
   void buildPurpleMenu() {
     widget.secondaryItems = [
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(25,0,77, 1), () => print('green')),
+          Color.fromRGBO(25, 0, 77, 1), () => print('green')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(42,0,128, 1), () => print('red')),
+          Color.fromRGBO(42, 0, 128, 1), () => print('red')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
           Color.fromRGBO(77, 0, 153, 1), () => print('purple')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(85,0,128, 1), () => print('grey')),
+          Color.fromRGBO(85, 0, 128, 1), () => print('grey')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
           Color.fromRGBO(128, 0, 128, 1), () => print('yellow')),
       RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
@@ -483,12 +482,12 @@ class _RadialMenuState extends State<RadialMenu> {
     int rot = 0;
     int gelb = 0;
     int blau = 0;
-    for(int i=0; i<11; i++ ){
-      rot = (i *255/11).toInt();
-      gelb = (i*255/11).toInt();
-      blau = (i*255/11).toInt();
+    for (int i = 0; i < 11; i++) {
+      rot = (i * 255 / 11).toInt();
+      gelb = (i * 255 / 11).toInt();
+      blau = (i * 255 / 11).toInt();
       var item = RadialMenuItem(Icon(Icons.blur_on, color: Colors.white),
-          Color.fromRGBO(rot,gelb,blau, 1), () => print('grey'));
+          Color.fromRGBO(rot, gelb, blau, 1), () => print('grey'));
       widget.secondaryItems.add(item);
     }
   }
@@ -498,7 +497,47 @@ class _RadialMenuState extends State<RadialMenu> {
     int rot = random.nextInt(255);
     int gelb = random.nextInt(255);
     int blau = random.nextInt(255);
-    return  Color.fromRGBO(rot,gelb,blau, 1);
+    return Color.fromRGBO(rot, gelb, blau, 1);
+  }
+
+  Widget _buildSlider() {
+    return Center(
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Text("Brightness"),
+      Slider(
+        value: _currentBrihgtness,
+        min: 0,
+        max: 1,
+        divisions: 10,
+        label: _currentBrihgtness.toString(),
+        onChanged: (double value) {
+          setState(() {
+            _currentBrihgtness = value;
+            _changeOppasity();
+          });
+        },
+      )
+    ]));
+  }
+  Widget _buildShowColorValues(){
+    return Center(
+            child: Text(
+                "RGB color: " +
+                    background_color.red.toString() +
+                    ", " +
+                    background_color.green.toString() +
+                    ", " +
+                    background_color.blue.toString() +
+                    "  Brightness: " +
+                    background_color.opacity.toStringAsFixed(2),
+                style: TextStyle(fontSize: 15)));
+  }
+
+  void _changeOppasity() {
+    int red = background_color.red;
+    int green = background_color.green;
+    int blue = background_color.blue;
+    background_color = Color.fromRGBO(red, green, blue, _currentBrihgtness);
   }
 }
 
