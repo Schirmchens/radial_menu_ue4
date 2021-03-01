@@ -241,6 +241,7 @@ class _RadialMenuState extends State<RadialMenu> {
               print(item.baseColor);
               if (item.baseColor == "RANDOM") {
                 background_color = randomColor();
+                _changeOppasity();
               }
 
               list.addAll(_buildSecondaryChildren(item.baseColor));
@@ -296,6 +297,7 @@ class _RadialMenuState extends State<RadialMenu> {
             setState(() {
               print(item.baseColor);
               background_color = item.color;
+              _changeOppasity();
               //opened = false;
             });
           },
